@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>untitled</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Jaimin Patel">
+	<script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="raphael-min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<!-- Date: 2012-09-07 -->
+	<script>
+		window.onload = function() {  
+		// Creates canvas 320 × 200 at 10, 50
+		var paper = Raphael(10, 50, 320, 200);
+		// Creates circle at x = 50, y = 40, with radius 10
+		var circle = paper.circle(50, 40, 10);
+		// Sets the fill attribute of the circle to red (#f00)
+		circle.attr("fill", "#f00");
+		// Sets the stroke attribute of the circle to white
+		circle.attr("stroke", "#fff");
+		
+		var chart = new Highcharts.Chart({
+
+		    chart: {
+		        renderTo: 'container',
+		        animation: {
+		            duration: 1000
+		        }
+		    },
+
+		    xAxis: {
+		        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		    },
+
+		    series: [{
+		        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+		    }]
+
+		});
+
+		i = 1;
+		$('#update').click(function() {
+		    chart.series[0].data[0].update(i++ % 2 ? 200 : 0);
+		});	
+	}
+	</script>
+</head>
+<body>
+	<div id="container" style="height: 300px"></div>
+
+	<button id="update">Update chart</button>
+</body>
+</html>
+

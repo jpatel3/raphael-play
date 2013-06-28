@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>untitled</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Jaimin Patel">
+	<!-- Date: 2012-09-04 -->
+</head>
+<body>
+<script>
+/*
+	if (!("a" in window)) {
+	    var a = 1;
+	}
+	alert(a);
+//Undefined
+*/
+
+/*
+var a = 1,
+    b = function a(x) {
+        x && a(--x);
+    };
+
+alert(a);
+//1
+*/
+
+/*
+function a(x) {
+    return x * 2;
+}
+var a;
+alert(a);
+//Displays the function
+*/
+
+/*
+function b(x, y, a) {
+    arguments[2] = 10;
+	arguments[1] = 5;
+    alert(a);
+}
+b(1, 2, 3);
+//It assigns 10 to argumetn 2, which in this case is a
+*/
+
+function a() {
+    alert(this);
+}
+a.call(null);
+//Object window
+
+</script>
+</body>
+</html>

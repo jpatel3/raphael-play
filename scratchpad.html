@@ -1,0 +1,113 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Scratch Pad test</title>
+    <meta name="author" content="Jaimin Patel">
+    <script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="underscore.js" type="text/javascript" charset="utf-8"></script>
+    <script src="raphael-min.js" type="text/javascript" charset="utf-8"></script>
+  	<script type="text/javascript" src="scratchpad.js" charset="utf-8"></script>
+    
+	<script type="text/javascript">
+	var Tuva = (function(){
+		  scratchpad: (function() {
+            var disabled = false, wasVisible, pad;
+
+            var actions = {
+                disable: function() {
+                    wasVisible = actions.isVisible();
+                    actions.hide();
+
+                    $("#scratchpad-show").hide();
+                    $("#scratchpad-not-available").show();
+                    disabled = true;
+                },
+
+                enable: function() {
+                    if (wasVisible) {
+                        actions.show();
+                        wasVisible = false;
+                    }
+
+                    $("#scratchpad-show").show();
+                    $("#scratchpad-not-available").hide();
+                    disabled = false;
+                },
+
+                isVisible: function() {
+                    return $("#scratchpad").is(":visible");
+                },
+
+                show: function() {
+
+                    if (actions.isVisible()) {
+                        return;
+                    }
+                    var makeVisible = function() {
+                        $("#scratchpad").show();
+                        $("#scratchpad-show").text($._("Hide scratchpad"));
+
+                        // If pad has never been created or if it's empty
+                        // because it was removed from the DOM, recreate a new
+                        // scratchpad.
+                        if (!pad || !$("#scratchpad div").children().length) {
+                            pad = new DrawingScratchpad(
+                                $("#scratchpad div")[0]);
+                        }
+                    };
+					makeVisible();
+                },
+
+                hide: function() {
+                    if (!actions.isVisible()) {
+                        return;
+                    }
+                    $("#scratchpad").hide();
+                    $("#scratchpad-show").text($._("Show scratchpad"));
+                },
+
+                toggle: function() {
+                    actions.isVisible() ? actions.hide() : actions.show();
+                },
+
+                clear: function() {
+                    if (pad) {
+                        pad.clear();
+                    }
+                },
+
+                resize: function() {
+                    if (pad) {
+                        pad.resize();
+                    }
+                }
+            };
+
+            return actions;
+        })();
+	})
+    $(document).ready(function(){
+		 // Scratchpad toggle
+	    $("#scratchpad-show").click(function(e) {
+
+	        debugger;
+	        Tuva.scratchpad.toggle();
+	    });
+	  });
+    </script>
+    <style>
+         #scratchpad {  
+                width: 500px;  
+                border: 1px solid #aaa;  
+            }  
+    </style>
+</head>
+<body>
+	<div id="scratchpad" style="display: block;">
+		<div style="width:500px;height:250px;">
+			This is sample div
+		</div>
+	</div>
+	<button id="scratchpad-show">scratch pad</div>
+</body>
+</html>

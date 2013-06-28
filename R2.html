@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>untitled</title>
+	<meta name="author" content="Jaimin Patel">
+	<script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="raphael-min.js" type="text/javascript" charset="utf-8"></script>
+	<style>
+		body{
+		    background: black;
+		    margin: 0;
+		    padding: 50px
+		}
+
+		#paper{
+		    width: 300px;
+		    margin: 0 auto;
+		}
+	</style>
+	<!-- Date: 2012-09-07 -->
+	<script>
+	/**
+	 * Pie method
+	 *
+	 * cx: x position of the rotating center of the pie
+	 * cy: y position of the rotating center of the pie
+	 * r : radius of the pie 
+	 * a1: angle expressed in degrees where the pie start
+	 * a2: angle expressed in degrees where the pie end
+	 */
+
+	window.onload = function() {  
+		Raphael.fn.pie = function (cx, cy, r, a1, a2) {
+		    var d, flag = (a2 - a1) > 180;
+		    
+		    a1 = (a1 % 360) * Math.PI / 180;
+		    a2 = (a2 % 360) * Math.PI / 180;
+		    
+		    d = ["M", cx, cy, "l", r * Math.cos(a1), r * Math.sin(a1), "A", r, r, "0", +flag, "1", cx + r * Math.cos(a2), cy + r * Math.sin(a2), "z"];
+		    
+		    return this.path(d.join(' '));
+		};
+
+		var i, start, end, color,
+		    nPie  = 24, // Change this value to update the number of pies
+		    slice = 360/nPie,
+		    paper = Raphael("paper", 300, 300),
+		    pies  = paper.set();
+
+		for(i = 0; i < nPie; i++) {
+		    start = (i*slice) - (slice/2);
+		    end   = start + (360/nPie);
+		    color = (i*slice) / 360;
+		    
+		    pies.push(
+		        paper.pie(150, 150, 140, start, end)
+		        .attr({fill:"hsl(" + color + ", 1, 0.5)"})
+		    );
+		}
+
+		pies.attr({
+		    stroke: "#FFF",
+		    "stroke-width": 3 // Change this value to adjust the thickness of the borders.
+		});
+	}
+	</script>
+</head>
+<body>
+	<div id="container"></div>
+	<div id="paper"></div>
+</body>
+</html>
+

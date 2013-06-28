@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>untitled</title>
+	<meta name="author" content="Jaimin Patel">
+	<script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="raphael-min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<!-- Date: 2012-09-07 -->
+	<script>
+	window.onload = function() {  
+			// Creates canvas 320 × 200 at 10, 50
+			var paper = Raphael(10, 50, 320, 200);
+			// Creates circle at x = 50, y = 40, with radius 10
+			var r = paper.rect(100,130,120,70, 6).attr({fill: "red"});
+			alert("rectangle X: "+r.attr("x"));
+			paper.text(200,100,"Click the rect to transform it...").attr({"font-size":19});
+			r.click(function(e){
+			r.attr({transform: "s1.2t-30,-20"});
+			/* realX is the rectangle's X coordinate after applying current rect
+			transformation matrix. */
+			var realX = r.matrix.x(r.attr("x"),r.attr("y"));
+			alert("rectangle X: "+realX);
+			});	
+		}
+	</script>
+</head>
+<body>
+	<div id="container"></div>
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>untitled</title>
+    <meta name="author" content="Jaimin Patel">
+    <script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="raphael-min.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+         #canvas_container {  
+                width: 500px;  
+                border: 1px solid #aaa;  
+            }  
+    </style>
+    <!-- Date: 2012-09-07 -->
+    <script>
+
+    window.onload = function() {  
+        var paper = new Raphael(document.getElementById('canvas_container'), 500, 500); 
+        //circle
+        var circle = paper.circle(100, 100, 80);
+        
+        //circle springs
+        for(var i = 0; i < 5; i+=1) {  
+            var multiplier = i*5;  
+            paper.circle(250 + (2*multiplier), 100 + multiplier, 50 - multiplier);  
+        }
+
+        //rectangle
+        var rectangle = paper.rect(200, 200, 250, 100); 
+
+        //ellipse
+        var ellipse = paper.ellipse(200, 400, 100, 50);
+
+
+    }
+    </script>
+</head>
+<body>
+    <div id="canvas_container"></div>
+</body>
+</html>
+
