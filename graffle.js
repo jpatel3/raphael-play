@@ -78,8 +78,12 @@ window.onload = function () {
             this.animate({"fill-opacity": 0}, 500);
         },
         r = Raphael("holder", 640, 480),
-        connections = [],
-        shapes = [  r.ellipse(190, 100, 30, 20).attr('text','new text here').click(unit),
+        connections = [];
+        var group1 = r.set()
+        group1.push(r.ellipse(170, 100, 50, 40).click(unit));
+        group1.push(r.text(180, 100, "First Learning Unit"));
+        
+        var shapes = [  group1,
                     r.rect(290, 80, 60, 40, 10),
                     r.rect(290, 180, 60, 40, 2),
                     r.ellipse(450, 100, 20, 20),

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>untitled</title>
+    <meta name="generator" content="TextMate http://macromates.com/">
+    <meta name="author" content="Jaimin Patel">
+    <script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="raphael-min.js" type="text/javascript" charset="utf-8"></script>   
+    <script>
+    Raphael.fn.line = function(startX, startY, endX, endY){
+        return this.path('M' + startX + ' ' + startY + ' L' + endX + ' ' + endY);
+
+    };
+    
+    window.onload = function() { 
+
+        var paper = Raphael(30,30, 700, 600);
+        
+        var start_xdim = 50;
+        var end_xdim = 450;
+        ln = paper.line(start_xdim, start_xdim, end_xdim, start_xdim).attr({stroke:'black', 'stroke-width': 2});
+        //right_arrow = paper.path("M445 50L460 50").attr({stroke:'black', 'stroke-width': 2, 'arrow-end':'classic-wide-long'});
+        right_arrow = paper.path("M" + (end_xdim-5) + " " + start_xdim +"L"+ (end_xdim+10) + " " + start_xdim).attr({stroke:'black', 'stroke-width': 2, 'arrow-end':'classic-wide-long'});
+        //left_arrow = paper.path("M45 50L60 50").attr({stroke:'black', 'stroke-width': 2, 'arrow-end':'classic-wide-long'}).transform("100r180");
+        left_arrow = paper.path("M" + (start_xdim-5) + " " + start_xdim + "L" + (start_xdim+10) + " " + start_xdim).attr({stroke:'black', 'stroke-width': 2, 'arrow-end':'classic-wide-long'}).transform("100r180");
+
+        //vertical divisions
+        var start_y = (start_xdim+10);
+        var end_y = (start_xdim-10);
+        for(var x=start_xdim+20; x<end_xdim; x=x+35){
+            v_line = paper.line(x, start_y, x, end_y).attr({stroke:'#48B8E6', 'stroke-width':3});        
+        }
+
+        //ln = paper.line(100, 100, 1000, 100).attr({stroke:'red'});
+        
+    };
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
