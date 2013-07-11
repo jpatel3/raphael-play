@@ -1,0 +1,127 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Scratch Pad test</title>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <style>
+    	#narrative-container{
+    		width: 600px;
+    		height: 300px;
+    	}
+        #scratchpad{  
+        	padding-left: 20px;
+			overflow: hidden;
+			display: none;
+        }  
+        #scratchpad div {
+			position: absolute;
+			margin-top: -20px;
+			z-index: 1;
+			min-width: 514px;
+			height: 98%;
+			outline: 1px solid #ccc;
+		}
+    </style>
+    <meta name="author" content="Jaimin Patel">
+    <script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="raphael-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="spad.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+		var Tuva = Tuva || {
+            scratchpad: (function() {
+            var disabled = false, wasVisible, pad;
+
+            var actions = {
+                disable: function() {
+                    wasVisible = actions.isVisible();
+                    actions.hide();
+
+                    $("#scratchpad-show").hide();
+                    //$("#scratchpad-not-available").show();
+                    disabled = true;
+                },
+
+                enable: function() {
+                    if (wasVisible) {
+                        actions.show();
+                        wasVisible = false;
+                    }
+
+                    $("#scratchpad-show").show();
+                    //$("#scratchpad-not-available").hide();
+                    disabled = false;
+                },
+
+                isVisible: function() {
+                    return $("#scratchpad").is(":visible");
+                },
+
+                show: function() {
+
+                    if (actions.isVisible()) {
+                        return;
+                    }
+
+                    var makeVisible = function() {
+                        $("#scratchpad").show();
+                        $("#scratchpad-show").text("Hide scratchpad");
+
+                        if (!pad || !$("#scratchpad div").children().length) {
+                            pad = new DrawingScratchpad(
+                                $("#scratchpad div")[0]);
+                        }
+                    };
+					makeVisible();
+                    //loadModule("scratchpad").then(makeVisible);
+                },
+
+                hide: function() {
+                    if (!actions.isVisible()) {
+                        return;
+                    }
+
+                    $("#scratchpad").hide();
+                    $("#scratchpad-show").text("Show scratchpad");
+                },
+
+                toggle: function() {
+                    actions.isVisible() ? actions.hide() : actions.show();
+                },
+
+                clear: function() {
+                    if (pad) {
+                        pad.clear();
+                    }
+                },
+
+                resize: function() {
+                    if (pad) {
+                        pad.resize();
+                    }
+                }
+            };
+            return actions;
+        	})()
+        };
+        $(document).ready(function(){
+             // Scratchpad toggle
+		    $("#scratchpad-show").click(function(e) {
+		        e.preventDefault();
+		        Tuva.scratchpad.toggle();
+		    });
+        });
+    </script>
+</head>
+<body>
+	<!--<canvas class="scratchpad-tool-canvas active" width="900" height="400" style="pointer-events: auto;"></canvas>-->
+	<button class="btn btn-link" id="scratchpad-show">Show Scratchpad</button>
+	<div id="narrative-container">
+		The Giants have won 8 of 18 games they have played on the road this season. 
+         	Have they won over half of their away games?
+		<div id="scratchpad">
+	         <div></div>
+	    </div>
+	</div>
+</body>
+</html>
