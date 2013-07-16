@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>untitled</title>
+  <meta name="generator" content="TextMate http://macromates.com/">
+  <meta name="author" content="Jaimin Patel">
+  <script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="raphael-min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <!-- Date: 2012-09-07 -->
+  <script>
+    $(function() {
+        var canvas = $('canvas')[0];
+        var ctx = canvas.getContext('2d');
+
+        var w = canvas.width = 700;
+        var h = canvas.height = 400;
+        with(ctx) {
+          fillStyle = '#000';
+          fillRect(0, 0, w, h);
+          fill();
+          beginPath();
+          lineWidth = 2;
+          strokeStyle = '#f00';
+          moveTo(w/7, h/2);
+          lineTo(6*w/7, h/2);
+          stroke();
+          for(var i = -0;i <= 10; i++) {
+            beginPath();
+            strokeStyle = '#0f0';
+            lineWidth = 2;
+            moveTo(w/2 + i * 20, h/2 - 20);
+            lineTo(w/2 + i * 20, h/2 + 20);
+            fillStyle = '#ff0';
+            fillText(i, (w/2 + i * 20 )- 5, h/2 + 35);
+            if(!i) {
+              lineWidth = 4;
+              strokeStyle = '#f0f';
+            }
+            fill();
+            stroke();
+          }
+        }
+      });
+  </script>
+</head>
+<body>
+  <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+</canvas>
+
+</body>
+</html>
+

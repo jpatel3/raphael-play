@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <title>Number Line</title>
+  <style type="text/css">
+  .lineContainer {
+    position:relative;
+  }
+  .line {
+    border-top: 1px solid blue;
+    border-right: 1px solid blue;
+    width: 21px;
+    Height: 8px;
+    float: left;
+    margin: 0;
+    padding: 0;
+  }
+  .lineRightEnd {
+    border-right: 0;
+  }
+  .numberContainer {
+    position: absolute;
+    top: 10px;
+    margin: 0;
+    padding: 0;
+  }
+  .number {
+    width: 22px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .numberLeftEnd {
+    width: 10px;
+    Height: 5px;
+    float: left;
+    margin: 0;
+    padding: 0;
+  }
+  </style>
+
+</head>
+<body>
+<p>A number line</p>
+<div class="lineContainer">
+  <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line lineRightEnd"></div>
+  <div class="numberContainer"><div class="numberLeftEnd"></div><div class="number">-5</div><div class="number">-4</div><div class="number">-3</div><div class="number">-2</div><div class="number">-1</div><div class="number">0</div><div class="number">1</div><div class="number">2</div><div class="number">3</div><div class="number">4</div><div class="number">5</div>
+  </div>
+</div>
+</body>
+</html>
